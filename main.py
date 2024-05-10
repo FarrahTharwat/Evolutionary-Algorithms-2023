@@ -35,10 +35,9 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
             
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                row, col = get_row_col_from_mouse(pos)
-                game.select(row, col)
+            if game.turn == RED:
+                value, new_board = minimax(game.get_board(), 4, RED, game)
+                game.ai_move(new_board)
 
         game.update()
     
